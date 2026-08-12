@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<section class="hero">
+
+    <h1>
+        AI Resume Screening
+    </h1>
+
+    <p>
+        Analyze a candidate's resume against
+        a Job Description using NLP.
+    </p>
+
+</section>
+
+
+<div class="card">
+
+
+    <h2>
+        Resume Analysis
+    </h2>
+
+
+    <form
+        action="{{ url_for('analyze') }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+
+        <!-- Job Description -->
+
+        <div class="form-group">
+
+            <label>
+                Job Description
+            </label>
+
+            <textarea
+                name="job_description"
+                rows="15"
+                placeholder="Paste the Job Description here..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <!-- Resume -->
+
+        <div class="form-group">
+
+            <label>
+                Upload Resume
+            </label>
+
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf,.docx,.txt"
+                required
+            >
+
+            <small>
+                Supported formats:
+                PDF, DOCX, TXT
+            </small>
+
+        </div>
+
+
+        <!-- Submit -->
+
+        <button
+            type="submit"
+            class="btn"
+        >
+
+            Analyze Resume
+
+        </button>
+
+
+    </form>
+
+
+</div>
+
+
+{% endblock %}
