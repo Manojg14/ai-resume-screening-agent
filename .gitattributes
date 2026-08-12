@@ -1,2 +1,98 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# ==============================
+# Python
+# ==============================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# ==============================
+# Environment Variables
+# ==============================
+
+.env
+.env.local
+.env.*.local
+
+# ==============================
+# Jupyter Notebook
+# ==============================
+
+.ipynb_checkpoints/
+
+# ==============================
+# Flask Uploads
+# ==============================
+
+uploads/*
+!uploads/.gitkeep
+
+# ==============================
+# Generated Reports
+# ==============================
+
+outputs/*
+!outputs/.gitkeep
+
+# Generated CSV
+*.csv
+
+# Generated Excel
+*.xlsx
+
+# Generated PDF reports
+*.pdf
+
+# ==============================
+# Temporary Files
+# ==============================
+
+*.tmp
+*.temp
+*.log
+
+# ==============================
+# IDE
+# ==============================
+
+.vscode/
+.idea/
+
+# ==============================
+# OS Files
+# ==============================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Testing / Coverage
+# ==============================
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==============================
+# Model / Cache Files
+# ==============================
+
+*.pkl
+*.pickle
+*.joblib
+*.bin
+
+# ==============================
+# Local data
+# ==============================
+
+data/private/
+data/uploads/
