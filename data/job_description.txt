@@ -1,0 +1,37 @@
+AI Engineer
+
+We are looking for an AI Engineer with 2+ years of experience.
+
+Required skills:
+
+Python
+Machine Learning
+Deep Learning
+Natural Language Processing
+NLP
+Generative AI
+LLM
+RAG
+TensorFlow
+PyTorch
+Scikit-learn
+Pandas
+NumPy
+FastAPI
+SQL
+AWS
+Docker
+Git
+
+The candidate should have a Bachelor's degree in Computer Science,
+Artificial Intelligence, Data Science, Electronics or a related field.
+
+Responsibilities include:
+
+Develop machine learning models.
+Build NLP applications.
+Develop Generative AI solutions.
+Build RAG based applications.
+Develop REST APIs using FastAPI.
+Deploy AI applications on AWS.
+Work with large datasets. 

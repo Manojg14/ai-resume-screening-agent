@@ -1,0 +1,46 @@
+Manoj G
+
+AI Engineer
+
+Professional Summary
+
+AI Engineer with 2+ years of experience in Python,
+Machine Learning, Deep Learning and Natural Language Processing.
+
+Skills
+
+Python
+Machine Learning
+Deep Learning
+NLP
+Natural Language Processing
+Generative AI
+LLM
+RAG
+TensorFlow
+PyTorch
+Scikit-learn
+Pandas
+NumPy
+FastAPI
+SQL
+AWS
+Git
+Docker
+
+Experience
+
+AI Engineer
+
+2+ years of experience developing machine learning
+and NLP applications.
+
+Built NLP based document analysis systems.
+
+Developed REST APIs using FastAPI.
+
+Built RAG applications using LLMs.
+
+Education
+
+Bachelor of Engineering in Electronics and Communication Engineering.
