@@ -1,76 +1,273 @@
 {% extends "base.html" %}
 
+{% block title %}
+Resume Ranking Dashboard
+{% endblock %}
+
 
 {% block content %}
 
+<!-- ========================================= -->
+<!-- PAGE HEADER -->
+<!-- ========================================= -->
 
-<div class="result-header">
+<section class="ranking-hero">
 
-    <h1>
-        Resume Ranking Dashboard
-    </h1>
+    <div class="ranking-hero-content">
 
-    <p>
-        Candidates ranked according to the Job Description
-    </p>
+        <div class="page-badge">
+            <span class="badge-dot"></span>
+            AI RECRUITMENT ANALYTICS
+        </div>
 
-</div>
+        <h1>
+            Resume Ranking
+            <span>Dashboard</span>
+        </h1>
+
+        <p>
+            AI-powered candidate evaluation and ranking based
+            on job description compatibility.
+        </p>
+
+    </div>
+
+
+    <div class="analysis-status">
+
+        <span class="online-dot"></span>
+
+        Analysis Complete
+
+    </div>
+
+</section>
 
 
 <!-- ========================================= -->
-<!-- REPORT BUTTONS -->
+<!-- SUMMARY CARDS -->
 <!-- ========================================= -->
 
-<div class="card">
+<section class="summary-grid">
 
-    <h2>
-        Download Reports
-    </h2>
 
-    <div class="actions">
+    <!-- Candidates -->
+
+    <div class="summary-card">
+
+        <div class="summary-icon blue">
+            👥
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+                CANDIDATES ANALYZED
+            </span>
+
+            <strong>
+                {{ results|length }}
+            </strong>
+
+            <small>
+                Resumes processed
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- Top Score -->
+
+    <div class="summary-card">
+
+        <div class="summary-icon purple">
+            ★
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+                TOP MATCH
+            </span>
+
+            <strong>
+
+                {% if results %}
+                    {{ results[0].final_score }}%
+                {% else %}
+                    0%
+                {% endif %}
+
+            </strong>
+
+            <small>
+                Highest candidate score
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- Status -->
+
+    <div class="summary-card">
+
+        <div class="summary-icon green">
+            ✓
+        </div>
+
+        <div class="summary-content">
+
+            <span>
+                ANALYSIS STATUS
+            </span>
+
+            <strong>
+                Complete
+            </strong>
+
+            <small>
+                AI evaluation finished
+            </small>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- REPORT EXPORT -->
+<!-- ========================================= -->
+
+<section class="export-card">
+
+    <div class="export-info">
+
+        <div class="export-icon">
+            ↓
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                EXPORT RESULTS
+            </span>
+
+            <h2>
+                Download Recruitment Reports
+            </h2>
+
+            <p>
+                Export the candidate ranking results for
+                further analysis and recruitment decisions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="export-buttons">
 
         <a
             href="{{ url_for('download_csv') }}"
-            class="btn"
+            class="export-btn csv-btn"
         >
+
+            <span class="file-icon">
+                CSV
+            </span>
+
             Download CSV
+
         </a>
 
 
         <a
             href="{{ url_for('download_excel') }}"
-            class="btn"
+            class="export-btn excel-btn"
         >
+
+            <span class="file-icon">
+                XLS
+            </span>
+
             Download Excel
+
         </a>
 
 
         <a
             href="{{ url_for('download_pdf') }}"
-            class="btn"
+            class="export-btn pdf-btn"
         >
+
+            <span class="file-icon">
+                PDF
+            </span>
+
             Download PDF
+
         </a>
 
     </div>
 
-</div>
+</section>
 
 
 <!-- ========================================= -->
 <!-- RANKING TABLE -->
 <!-- ========================================= -->
 
-<div class="card">
+<section class="ranking-card">
 
-    <h2>
-        Candidate Ranking
-    </h2>
+    <!-- Table Header -->
+
+    <div class="ranking-card-header">
+
+        <div>
+
+            <span class="section-label">
+                CANDIDATE EVALUATION
+            </span>
+
+            <h2>
+                Candidate Ranking
+            </h2>
+
+            <p>
+                Candidates sorted by overall compatibility score.
+            </p>
+
+        </div>
 
 
-    <div class="table-container">
+        <div class="candidate-count">
 
-        <table>
+            <strong>
+                {{ results|length }}
+            </strong>
+
+            <span>
+                Candidates
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Table -->
+
+    <div class="ranking-table-wrapper">
+
+        <table class="ranking-table">
 
             <thead>
 
@@ -123,53 +320,202 @@
 
                 <tr>
 
-                    <td>
-                        <strong>
-                            #{{ result.rank }}
-                        </strong>
-                    </td>
 
-
-                    <td>
-                        {{ result.candidate_name }}
-                    </td>
-
+                    <!-- Rank -->
 
                     <td>
 
-                        <strong>
-                            {{ result.final_score }}%
-                        </strong>
+                        <div class="rank-wrapper
+
+                            {% if result.rank == 1 %}
+                                first-rank
+                            {% elif result.rank == 2 %}
+                                second-rank
+                            {% elif result.rank == 3 %}
+                                third-rank
+                            {% endif %}
+
+                        ">
+
+                            {% if result.rank == 1 %}
+
+                                <span class="rank-medal">
+                                    🥇
+                                </span>
+
+                            {% elif result.rank == 2 %}
+
+                                <span class="rank-medal">
+                                    🥈
+                                </span>
+
+                            {% elif result.rank == 3 %}
+
+                                <span class="rank-medal">
+                                    🥉
+                                </span>
+
+                            {% else %}
+
+                                <span class="rank-number">
+                                    #{{ result.rank }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
 
                     </td>
 
+
+                    <!-- Candidate -->
 
                     <td>
-                        {{ result.similarity_score }}%
+
+                        <div class="candidate-cell">
+
+                            <div class="candidate-avatar">
+
+                                {{ result.candidate_name[0]|upper }}
+
+                            </div>
+
+
+                            <div class="candidate-details">
+
+                                <strong>
+                                    {{ result.candidate_name }}
+                                </strong>
+
+                                <span>
+                                    Candidate #{{ result.rank }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
                     </td>
 
+
+                    <!-- Final Score -->
 
                     <td>
-                        {{ result.skill_score }}%
+
+                        <div class="final-score">
+
+                            <strong>
+                                {{ result.final_score }}%
+                            </strong>
+
+                            <div class="score-bar">
+
+                                <div
+                                    style="
+                                        width: {{ result.final_score }}%;
+                                    "
+                                ></div>
+
+                            </div>
+
+                        </div>
+
                     </td>
 
+
+                    <!-- NLP -->
 
                     <td>
-                        {{ result.experience_score }}%
+
+                        <div class="percentage-value">
+
+                            {{ result.similarity_score }}%
+
+                        </div>
+
                     </td>
 
+
+                    <!-- Skills -->
 
                     <td>
-                        {{ result.education_score }}%
+
+                        <div class="percentage-value">
+
+                            {{ result.skill_score }}%
+
+                        </div>
+
                     </td>
 
+
+                    <!-- Experience -->
 
                     <td>
 
-                        {{ result.recommendation }}
+                        <div class="percentage-value">
+
+                            {{ result.experience_score }}%
+
+                        </div>
 
                     </td>
 
+
+                    <!-- Education -->
+
+                    <td>
+
+                        <div class="percentage-value">
+
+                            {{ result.education_score }}%
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- Recommendation -->
+
+                    <td>
+
+                        <span
+                            class="recommendation-badge
+
+                            {% if 'Strong' in result.recommendation %}
+                                strong
+                            {% elif 'Good' in result.recommendation %}
+                                good
+                            {% else %}
+                                review
+                            {% endif %}
+
+                            "
+                        >
+
+                            {% if 'Strong' in result.recommendation %}
+
+                                ✓
+
+                            {% elif 'Good' in result.recommendation %}
+
+                                ●
+
+                            {% else %}
+
+                                !
+
+                            {% endif %}
+
+
+                            {{ result.recommendation }}
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- Details -->
 
                     <td>
 
@@ -178,18 +524,52 @@
                                 'candidate',
                                 rank=result.rank
                             ) }}"
-                            class="small-btn"
+                            class="view-btn"
                         >
 
                             View
+
+                            <span>
+                                →
+                            </span>
 
                         </a>
 
                     </td>
 
+
                 </tr>
 
                 {% endfor %}
+
+
+                {% if not results %}
+
+                <tr>
+
+                    <td
+                        colspan="9"
+                        class="empty-state"
+                    >
+
+                        <div class="empty-icon">
+                            —
+                        </div>
+
+                        <strong>
+                            No candidates found
+                        </strong>
+
+                        <span>
+                            Upload resumes to begin screening.
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                {% endif %}
+
 
             </tbody>
 
@@ -197,21 +577,51 @@
 
     </div>
 
-</div>
+</section>
 
 
-<div class="actions">
+<!-- ========================================= -->
+<!-- BOTTOM ACTION -->
+<!-- ========================================= -->
+
+<section class="dashboard-action">
+
+    <div>
+
+        <span class="section-label">
+            NEW ANALYSIS
+        </span>
+
+        <h2>
+            Screen More Candidates
+        </h2>
+
+        <p>
+            Upload another set of resumes and compare
+            candidates against a new job description.
+        </p>
+
+    </div>
+
 
     <a
         href="{{ url_for('index') }}"
-        class="btn"
+        class="analyze-btn"
     >
+
+        <span>
+            + 
+        </span>
 
         Analyze More Resumes
 
+        <span>
+            →
+        </span>
+
     </a>
 
-</div>
+</section>
 
 
 {% endblock %} 

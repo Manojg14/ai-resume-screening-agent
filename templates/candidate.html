@@ -1,111 +1,225 @@
 {% extends "base.html" %}
 
+{% block title %}
+Candidate Analysis
+{% endblock %}
+
 
 {% block content %}
 
 
-<div class="result-header">
+<div class="page-header">
 
-    <h1>
-        Candidate Analysis
-    </h1>
+    <div>
 
-    <h2>
-        {{ result.candidate_name }}
-    </h2>
+        <div class="page-label">
+            CANDIDATE PROFILE
+        </div>
 
-    <p>
-        {{ result.filename }}
-    </p>
+        <h1>
+            Candidate Analysis
+        </h1>
+
+        <p>
+            Detailed AI-powered candidate evaluation
+        </p>
+
+    </div>
+
+
+    <a
+        href="{{ url_for('index') }}"
+        class="secondary-btn"
+    >
+        ← Back
+    </a>
 
 </div>
 
 
-<!-- Final Score -->
+<!-- ============================= -->
+<!-- PROFILE -->
+<!-- ============================= -->
 
-<div class="score-card">
+<div class="candidate-banner">
 
-    <div class="score">
+    <div class="candidate-avatar">
 
-        {{ result.final_score }}%
+        {{ result.candidate_name[0]|upper }}
 
     </div>
 
-    <div>
+
+    <div class="candidate-info">
+
+        <h2>
+            {{ result.candidate_name }}
+        </h2>
+
+        <p>
+            {{ result.filename }}
+        </p>
+
+    </div>
+
+
+    <div class="recommendation recommendation-strong">
+
+        {{ result.recommendation }}
+
+    </div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- SCORE -->
+<!-- ============================= -->
+
+<div class="main-score-card">
+
+    <div class="score-circle">
+
+        <div>
+
+            <strong>
+                {{ result.final_score }}%
+            </strong>
+
+            <span>
+                Match
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="score-content">
+
+        <span class="eyebrow">
+            FINAL SCORE
+        </span>
 
         <h2>
             {{ result.recommendation }}
         </h2>
 
         <p>
-            Overall Candidate Score
+            Overall candidate compatibility based on
+            multiple recruitment criteria.
         </p>
 
+
+        <div class="score-progress">
+
+            <div
+                class="score-progress-fill"
+                style="width: {{ result.final_score }}%;"
+            ></div>
+
+        </div>
+
     </div>
 
 </div>
 
 
-<!-- Metrics -->
+<!-- ============================= -->
+<!-- METRICS -->
+<!-- ============================= -->
 
-<div class="grid">
+<div class="section-title">
+
+    <span>
+        AI EVALUATION
+    </span>
+
+    <h2>
+        Score Breakdown
+    </h2>
+
+</div>
 
 
-    <div class="metric-card">
+<div class="metrics-grid">
 
-        <h3>
-            NLP Similarity
-        </h3>
 
-        <div class="metric">
+    <div class="premium-metric">
 
+        <div class="metric-top">
+            <span>NLP Similarity</span>
+            <span class="metric-icon">NLP</span>
+        </div>
+
+        <strong>
             {{ result.similarity_score }}%
+        </strong>
 
+        <div class="metric-bar">
+            <div
+                style="width: {{ result.similarity_score }}%;"
+            ></div>
         </div>
 
     </div>
 
 
-    <div class="metric-card">
+    <div class="premium-metric">
 
-        <h3>
-            Skill Match
-        </h3>
+        <div class="metric-top">
+            <span>Skill Match</span>
+            <span class="metric-icon">SK</span>
+        </div>
 
-        <div class="metric">
-
+        <strong>
             {{ result.skill_score }}%
+        </strong>
 
+        <div class="metric-bar">
+            <div
+                style="width: {{ result.skill_score }}%;"
+            ></div>
         </div>
 
     </div>
 
 
-    <div class="metric-card">
+    <div class="premium-metric">
 
-        <h3>
-            Experience
-        </h3>
+        <div class="metric-top">
+            <span>Experience</span>
+            <span class="metric-icon">EX</span>
+        </div>
 
-        <div class="metric">
-
+        <strong>
             {{ result.experience_score }}%
+        </strong>
 
+        <div class="metric-bar">
+            <div
+                style="width: {{ result.experience_score }}%;"
+            ></div>
         </div>
 
     </div>
 
 
-    <div class="metric-card">
+    <div class="premium-metric">
 
-        <h3>
-            Education
-        </h3>
+        <div class="metric-top">
+            <span>Education</span>
+            <span class="metric-icon">ED</span>
+        </div>
 
-        <div class="metric">
-
+        <strong>
             {{ result.education_score }}%
+        </strong>
 
+        <div class="metric-bar">
+            <div
+                style="width: {{ result.education_score }}%;"
+            ></div>
         </div>
 
     </div>
@@ -114,105 +228,171 @@
 </div>
 
 
-<!-- Experience -->
+<!-- ============================= -->
+<!-- EXPERIENCE -->
+<!-- ============================= -->
 
-<div class="card">
+<div class="detail-card">
 
-    <h2>
-        Experience Analysis
-    </h2>
+    <div class="detail-heading">
 
-    <p>
+        <div class="heading-icon blue">
+            EX
+        </div>
 
-        Required:
-        <strong>
-            {{ result.required_experience }}
-            years
-        </strong>
+        <div>
 
-    </p>
+            <h2>
+                Experience Analysis
+            </h2>
 
-    <p>
+            <p>
+                Required vs candidate experience
+            </p>
 
-        Candidate:
-        <strong>
-            {{ result.candidate_experience }}
-            years
-        </strong>
+        </div>
 
-    </p>
-
-</div>
+    </div>
 
 
-<!-- Matched Skills -->
+    <div class="experience-cards">
 
-<div class="card">
+        <div class="experience-item">
 
-    <h2>
-        Matched Skills
-    </h2>
+            <span>
+                Required
+            </span>
 
-    <div class="skills">
+            <strong>
+                {{ result.required_experience }}
+            </strong>
 
-        {% for skill in result.matched_skills %}
+            <small>
+                Years
+            </small>
 
-        <span class="skill matched">
+        </div>
 
-            ✓ {{ skill }}
 
-        </span>
+        <div class="experience-item highlight">
 
-        {% endfor %}
+            <span>
+                Candidate
+            </span>
+
+            <strong>
+                {{ result.candidate_experience }}
+            </strong>
+
+            <small>
+                Years
+            </small>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- Missing Skills -->
+<!-- ============================= -->
+<!-- SKILLS -->
+<!-- ============================= -->
 
-<div class="card">
+<div class="skills-grid">
 
-    <h2>
-        Missing Skills
-    </h2>
 
-    {% if result.missing_skills %}
+    <div class="detail-card">
+
+        <div class="detail-heading">
+
+            <div class="heading-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <h2>
+                    Matched Skills
+                </h2>
+
+            </div>
+
+        </div>
+
 
         <div class="skills">
 
-            {% for skill in result.missing_skills %}
+            {% for skill in result.matched_skills %}
 
-            <span class="skill missing">
-
-                ✗ {{ skill }}
-
-            </span>
+                <span class="skill matched">
+                    ✓ {{ skill }}
+                </span>
 
             {% endfor %}
 
         </div>
 
-    {% else %}
+    </div>
 
-        <p>
-            No missing skills.
-        </p>
 
-    {% endif %}
+    <div class="detail-card">
+
+        <div class="detail-heading">
+
+            <div class="heading-icon red">
+                ✕
+            </div>
+
+            <div>
+
+                <h2>
+                    Missing Skills
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        {% if result.missing_skills %}
+
+            <div class="skills">
+
+                {% for skill in result.missing_skills %}
+
+                    <span class="skill missing">
+                        ✗ {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="success-message">
+                ✓ No missing skills
+            </div>
+
+        {% endif %}
+
+    </div>
+
 
 </div>
 
 
-<a
-    href="{{ url_for('index') }}"
-    class="btn"
->
+<div class="bottom-actions">
 
-    Back
+    <a
+        href="{{ url_for('index') }}"
+        class="primary-btn"
+    >
+        ← Back to Dashboard
+    </a>
 
-</a>
+</div>
 
 
-{% endblock %} 
+{% endblock %}

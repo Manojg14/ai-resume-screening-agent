@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -11,8 +10,15 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="description"
+        content="AI Resume Screening Agent - Intelligent NLP based recruitment system"
+    >
+
     <title>
+        {% block title %}
         AI Resume Screening Agent
+        {% endblock %}
     </title>
 
     <link
@@ -20,65 +26,137 @@
         href="{{ url_for('static', filename='css/style.css') }}"
     >
 
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
 </head>
 
 
 <body>
 
+    <!-- ============================= -->
+    <!-- NAVBAR -->
+    <!-- ============================= -->
 
-<header class="navbar">
+    <header class="navbar">
 
-    <div class="container">
+        <div class="nav-container">
 
-        <h2>
-            AI Resume Screening Agent
-        </h2>
+            <a
+                href="{{ url_for('index') }}"
+                class="brand"
+            >
 
-        <span>
-            NLP Based Recruitment System
-        </span>
+                <div class="brand-icon">
+                    AI
+                </div>
 
-    </div>
+                <div class="brand-text">
 
-</header>
+                    <strong>
+                        ResumeAI
+                    </strong>
 
-
-<main class="container">
-
-    {% with messages = get_flashed_messages() %}
-
-        {% if messages %}
-
-            {% for message in messages %}
-
-                <div class="alert">
-
-                    {{ message }}
+                    <span>
+                        Intelligent Screening
+                    </span>
 
                 </div>
 
-            {% endfor %}
-
-        {% endif %}
-
-    {% endwith %}
+            </a>
 
 
-    {% block content %}
+            <div class="nav-status">
 
-    {% endblock %}
+                <span class="status-dot"></span>
 
-</main>
+                AI Engine Online
+
+            </div>
+
+        </div>
+
+    </header>
 
 
-<footer>
+    <!-- ============================= -->
+    <!-- FLASH MESSAGES -->
+    <!-- ============================= -->
 
-    <p>
-        AI Resume Screening Agent |
-        Flask + NLP
-    </p>
+    <main class="main-container">
 
-</footer>
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="alert">
+
+                        <span class="alert-icon">
+                            !
+                        </span>
+
+                        <span>
+                            {{ message }}
+                        </span>
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div>
+
+                <strong>
+                    ResumeAI
+                </strong>
+
+                <span>
+                    AI-powered recruitment intelligence
+                </span>
+
+            </div>
+
+            <p>
+                Flask + NLP
+            </p>
+
+        </div>
+
+    </footer>
 
 
 </body>

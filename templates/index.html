@@ -1,38 +1,101 @@
 {% extends "base.html" %}
 
+{% block title %}
+AI Resume Screening Agent
+{% endblock %}
+
 
 {% block content %}
 
 
-<section class="hero">
+<!-- ============================= -->
+<!-- HERO -->
+<!-- ============================= -->
+
+<section class="hero-section">
+
+    <div class="hero-badge">
+
+        <span class="pulse-dot"></span>
+
+        AI-Powered Recruitment Platform
+
+    </div>
+
 
     <h1>
-        AI Resume Screening Agent
+
+        Screen Smarter.
+        <span>Hire Better.</span>
+
     </h1>
 
+
     <p>
-        Analyze and rank resumes against a Job Description
-        using NLP.
+
+        Analyze resumes against job descriptions using
+        intelligent NLP, skill matching and candidate
+        scoring.
+
     </p>
+
+
+    <div class="hero-features">
+
+        <div>
+            ✓ NLP Matching
+        </div>
+
+        <div>
+            ✓ Skill Detection
+        </div>
+
+        <div>
+            ✓ Experience Analysis
+        </div>
+
+        <div>
+            ✓ Candidate Ranking
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ========================================= -->
-<!-- SINGLE RESUME -->
-<!-- ========================================= -->
+<!-- ============================= -->
+<!-- SINGLE ANALYSIS -->
+<!-- ============================= -->
 
-<div class="card">
+<div class="analysis-card">
 
-    <h2>
-        Single Resume Analysis
-    </h2>
+    <div class="card-heading">
+
+        <div class="heading-icon blue">
+            AI
+        </div>
+
+        <div>
+
+            <h2>
+                Single Resume Analysis
+            </h2>
+
+            <p>
+                Analyze one candidate against your job description.
+            </p>
+
+        </div>
+
+    </div>
+
 
     <form
         action="{{ url_for('analyze') }}"
         method="POST"
         enctype="multipart/form-data"
     >
+
 
         <div class="form-group">
 
@@ -42,10 +105,14 @@
 
             <textarea
                 name="job_description"
-                rows="12"
-                placeholder="Paste the Job Description..."
+                rows="10"
+                placeholder="Paste the complete job description here..."
                 required
             ></textarea>
+
+            <div class="input-hint">
+                Include responsibilities, required skills and experience.
+            </div>
 
         </div>
 
@@ -53,51 +120,147 @@
         <div class="form-group">
 
             <label>
-                Upload Resume
+                Resume
             </label>
 
-            <input
-                type="file"
-                name="resume"
-                accept=".pdf,.docx,.txt"
-                required
-            >
 
-            <small>
-                PDF, DOCX or TXT
-            </small>
+            <label class="upload-box">
+
+                <input
+                    type="file"
+                    name="resume"
+                    accept=".pdf,.docx,.txt"
+                    required
+                >
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <strong>
+                    Drop your resume here
+                </strong>
+
+                <span>
+                    or click to browse
+                </span>
+
+                <small>
+                    PDF, DOCX or TXT
+                </small>
+
+            </label>
 
         </div>
 
 
         <button
             type="submit"
-            class="btn"
+            class="primary-btn"
         >
 
-            Analyze Single Resume
+            <span>
+                Analyze Resume
+            </span>
+
+            <span>
+                →
+            </span>
 
         </button>
+
 
     </form>
 
 </div>
 
 
-<!-- ========================================= -->
-<!-- MULTIPLE RESUMES -->
-<!-- ========================================= -->
+<!-- ============================= -->
+<!-- BATCH ANALYSIS -->
+<!-- ============================= -->
 
-<div class="card">
+<div class="analysis-card batch-card">
 
-    <h2>
-        Multiple Resume Screening
-    </h2>
+    <div class="card-heading">
 
-    <p>
-        Upload multiple resumes and automatically
-        rank candidates according to the Job Description.
-    </p>
+        <div class="heading-icon purple">
+            ⚡
+        </div>
+
+        <div>
+
+            <h2>
+                Batch Resume Screening
+            </h2>
+
+            <p>
+                Compare and rank multiple candidates automatically.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="batch-info">
+
+        <div class="batch-feature">
+
+            <span>
+                01
+            </span>
+
+            <div>
+                <strong>
+                    Upload Resumes
+                </strong>
+
+                <small>
+                    Select multiple candidates
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="batch-feature">
+
+            <span>
+                02
+            </span>
+
+            <div>
+                <strong>
+                    AI Analysis
+                </strong>
+
+                <small>
+                    Compare skills & experience
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="batch-feature">
+
+            <span>
+                03
+            </span>
+
+            <div>
+                <strong>
+                    Get Ranking
+                </strong>
+
+                <small>
+                    Automatically rank candidates
+                </small>
+            </div>
+
+        </div>
+
+    </div>
 
 
     <form
@@ -106,6 +269,7 @@
         enctype="multipart/form-data"
     >
 
+
         <div class="form-group">
 
             <label>
@@ -114,8 +278,8 @@
 
             <textarea
                 name="job_description"
-                rows="12"
-                placeholder="Paste the Job Description..."
+                rows="10"
+                placeholder="Paste the job description..."
                 required
             ></textarea>
 
@@ -125,37 +289,60 @@
         <div class="form-group">
 
             <label>
-                Upload Multiple Resumes
+                Candidate Resumes
             </label>
 
-            <input
-                type="file"
-                name="resumes"
-                accept=".pdf,.docx,.txt"
-                multiple
-                required
-            >
 
-            <small>
-                Select 2 or more resumes.
-                PDF, DOCX and TXT supported.
-            </small>
+            <label class="upload-box purple-upload">
+
+                <input
+                    type="file"
+                    name="resumes"
+                    accept=".pdf,.docx,.txt"
+                    multiple
+                    required
+                >
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <strong>
+                    Upload multiple resumes
+                </strong>
+
+                <span>
+                    Select 2 or more candidate files
+                </span>
+
+                <small>
+                    PDF, DOCX or TXT
+                </small>
+
+            </label>
 
         </div>
 
 
         <button
             type="submit"
-            class="btn"
+            class="primary-btn purple-btn"
         >
 
-            Analyze & Rank Resumes
+            <span>
+                Analyze & Rank Candidates
+            </span>
+
+            <span>
+                →
+            </span>
 
         </button>
+
 
     </form>
 
 </div>
 
 
-{% endblock %} 
+{% endblock %}
