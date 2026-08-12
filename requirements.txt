@@ -6,3 +6,4 @@ Flask
 PyMuPDF
 python-docx
 python-dotenv
+reportlab
