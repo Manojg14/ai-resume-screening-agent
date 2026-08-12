@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="result-header">
+
+    <h1>
+        Resume Ranking Dashboard
+    </h1>
+
+    <p>
+        Candidates ranked according to the Job Description
+    </p>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- REPORT BUTTONS -->
+<!-- ========================================= -->
+
+<div class="card">
+
+    <h2>
+        Download Reports
+    </h2>
+
+    <div class="actions">
+
+        <a
+            href="{{ url_for('download_csv') }}"
+            class="btn"
+        >
+            Download CSV
+        </a>
+
+
+        <a
+            href="{{ url_for('download_excel') }}"
+            class="btn"
+        >
+            Download Excel
+        </a>
+
+
+        <a
+            href="{{ url_for('download_pdf') }}"
+            class="btn"
+        >
+            Download PDF
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- RANKING TABLE -->
+<!-- ========================================= -->
+
+<div class="card">
+
+    <h2>
+        Candidate Ranking
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Rank
+                    </th>
+
+                    <th>
+                        Candidate
+                    </th>
+
+                    <th>
+                        Final Score
+                    </th>
+
+                    <th>
+                        NLP
+                    </th>
+
+                    <th>
+                        Skills
+                    </th>
+
+                    <th>
+                        Experience
+                    </th>
+
+                    <th>
+                        Education
+                    </th>
+
+                    <th>
+                        Recommendation
+                    </th>
+
+                    <th>
+                        Details
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for result in results %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            #{{ result.rank }}
+                        </strong>
+                    </td>
+
+
+                    <td>
+                        {{ result.candidate_name }}
+                    </td>
+
+
+                    <td>
+
+                        <strong>
+                            {{ result.final_score }}%
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+                        {{ result.similarity_score }}%
+                    </td>
+
+
+                    <td>
+                        {{ result.skill_score }}%
+                    </td>
+
+
+                    <td>
+                        {{ result.experience_score }}%
+                    </td>
+
+
+                    <td>
+                        {{ result.education_score }}%
+                    </td>
+
+
+                    <td>
+
+                        {{ result.recommendation }}
+
+                    </td>
+
+
+                    <td>
+
+                        <a
+                            href="{{ url_for(
+                                'candidate',
+                                rank=result.rank
+                            ) }}"
+                            class="small-btn"
+                        >
+
+                            View
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="actions">
+
+    <a
+        href="{{ url_for('index') }}"
+        class="btn"
+    >
+
+        Analyze More Resumes
+
+    </a>
+
+</div>
+
+
+{% endblock %} 
