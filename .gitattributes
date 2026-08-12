@@ -7,7 +7,10 @@ __pycache__/
 *.pyo
 *.pyd
 
+# ==============================
 # Virtual Environment
+# ==============================
+
 .venv/
 venv/
 env/
@@ -35,23 +38,22 @@ uploads/*
 !uploads/.gitkeep
 
 # ==============================
-# Generated Reports
+# Generated Reports / Outputs
 # ==============================
 
 outputs/*
 !outputs/.gitkeep
 
-# Generated CSV
+# ==============================
+# Generated Data Files
+# ==============================
+
 *.csv
-
-# Generated Excel
 *.xlsx
-
-# Generated PDF reports
 *.pdf
 
 # ==============================
-# Temporary Files
+# Temporary / Log Files
 # ==============================
 
 *.tmp
@@ -91,7 +93,7 @@ htmlcov/
 *.bin
 
 # ==============================
-# Local data
+# Local / Private Data
 # ==============================
 
 data/private/

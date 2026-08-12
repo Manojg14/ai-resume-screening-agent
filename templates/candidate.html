@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="result-header">
+
+    <h1>
+        Candidate Analysis
+    </h1>
+
+    <h2>
+        {{ result.candidate_name }}
+    </h2>
+
+    <p>
+        {{ result.filename }}
+    </p>
+
+</div>
+
+
+<!-- Final Score -->
+
+<div class="score-card">
+
+    <div class="score">
+
+        {{ result.final_score }}%
+
+    </div>
+
+    <div>
+
+        <h2>
+            {{ result.recommendation }}
+        </h2>
+
+        <p>
+            Overall Candidate Score
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- Metrics -->
+
+<div class="grid">
+
+
+    <div class="metric-card">
+
+        <h3>
+            NLP Similarity
+        </h3>
+
+        <div class="metric">
+
+            {{ result.similarity_score }}%
+
+        </div>
+
+    </div>
+
+
+    <div class="metric-card">
+
+        <h3>
+            Skill Match
+        </h3>
+
+        <div class="metric">
+
+            {{ result.skill_score }}%
+
+        </div>
+
+    </div>
+
+
+    <div class="metric-card">
+
+        <h3>
+            Experience
+        </h3>
+
+        <div class="metric">
+
+            {{ result.experience_score }}%
+
+        </div>
+
+    </div>
+
+
+    <div class="metric-card">
+
+        <h3>
+            Education
+        </h3>
+
+        <div class="metric">
+
+            {{ result.education_score }}%
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- Experience -->
+
+<div class="card">
+
+    <h2>
+        Experience Analysis
+    </h2>
+
+    <p>
+
+        Required:
+        <strong>
+            {{ result.required_experience }}
+            years
+        </strong>
+
+    </p>
+
+    <p>
+
+        Candidate:
+        <strong>
+            {{ result.candidate_experience }}
+            years
+        </strong>
+
+    </p>
+
+</div>
+
+
+<!-- Matched Skills -->
+
+<div class="card">
+
+    <h2>
+        Matched Skills
+    </h2>
+
+    <div class="skills">
+
+        {% for skill in result.matched_skills %}
+
+        <span class="skill matched">
+
+            ✓ {{ skill }}
+
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- Missing Skills -->
+
+<div class="card">
+
+    <h2>
+        Missing Skills
+    </h2>
+
+    {% if result.missing_skills %}
+
+        <div class="skills">
+
+            {% for skill in result.missing_skills %}
+
+            <span class="skill missing">
+
+                ✗ {{ skill }}
+
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>
+            No missing skills.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+<a
+    href="{{ url_for('index') }}"
+    class="btn"
+>
+
+    Back
+
+</a>
+
+
+{% endblock %} 
