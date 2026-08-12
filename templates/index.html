@@ -7,33 +7,32 @@
 <section class="hero">
 
     <h1>
-        AI Resume Screening
+        AI Resume Screening Agent
     </h1>
 
     <p>
-        Analyze a candidate's resume against
-        a Job Description using NLP.
+        Analyze and rank resumes against a Job Description
+        using NLP.
     </p>
 
 </section>
 
 
+<!-- ========================================= -->
+<!-- SINGLE RESUME -->
+<!-- ========================================= -->
+
 <div class="card">
 
-
     <h2>
-        Resume Analysis
+        Single Resume Analysis
     </h2>
-
 
     <form
         action="{{ url_for('analyze') }}"
         method="POST"
         enctype="multipart/form-data"
     >
-
-
-        <!-- Job Description -->
 
         <div class="form-group">
 
@@ -43,15 +42,13 @@
 
             <textarea
                 name="job_description"
-                rows="15"
-                placeholder="Paste the Job Description here..."
+                rows="12"
+                placeholder="Paste the Job Description..."
                 required
             ></textarea>
 
         </div>
 
-
-        <!-- Resume -->
 
         <div class="form-group">
 
@@ -67,29 +64,98 @@
             >
 
             <small>
-                Supported formats:
-                PDF, DOCX, TXT
+                PDF, DOCX or TXT
             </small>
 
         </div>
 
-
-        <!-- Submit -->
 
         <button
             type="submit"
             class="btn"
         >
 
-            Analyze Resume
+            Analyze Single Resume
 
         </button>
 
-
     </form>
-
 
 </div>
 
 
-{% endblock %}
+<!-- ========================================= -->
+<!-- MULTIPLE RESUMES -->
+<!-- ========================================= -->
+
+<div class="card">
+
+    <h2>
+        Multiple Resume Screening
+    </h2>
+
+    <p>
+        Upload multiple resumes and automatically
+        rank candidates according to the Job Description.
+    </p>
+
+
+    <form
+        action="{{ url_for('batch_analyze') }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <div class="form-group">
+
+            <label>
+                Job Description
+            </label>
+
+            <textarea
+                name="job_description"
+                rows="12"
+                placeholder="Paste the Job Description..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Upload Multiple Resumes
+            </label>
+
+            <input
+                type="file"
+                name="resumes"
+                accept=".pdf,.docx,.txt"
+                multiple
+                required
+            >
+
+            <small>
+                Select 2 or more resumes.
+                PDF, DOCX and TXT supported.
+            </small>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn"
+        >
+
+            Analyze & Rank Resumes
+
+        </button>
+
+    </form>
+
+</div>
+
+
+{% endblock %} 
