@@ -1,5 +1,3 @@
-# stage1/scoring.py
-
 import re
 
 from .similarity import calculate_similarity

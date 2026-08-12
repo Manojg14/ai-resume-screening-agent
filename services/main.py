@@ -1,14 +1,14 @@
-from parser import read_text_file
-from scoring import calculate_final_score
+from .parser import read_text_file
+from .scoring import calculate_final_score 
 
 
 # -----------------------------------
 # 1. File paths
 # -----------------------------------
 
-JD_PATH = "../data/job_description.txt"
+JD_PATH = "data/job_description.txt"
 
-RESUME_PATH = "../data/resume.txt"
+RESUME_PATH = "data/resume.txt"
 
 
 # -----------------------------------

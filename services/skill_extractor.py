@@ -1,5 +1,3 @@
-# stage1/skill_extractor.py
-
 import re
 
 
