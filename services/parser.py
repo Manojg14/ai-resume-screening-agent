@@ -15,4 +15,4 @@ def read_text_file(file_path):
     return file_path.read_text(
         encoding="utf-8",
         errors="ignore"
-    )
+    ) 
